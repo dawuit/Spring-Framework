@@ -61,6 +61,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	@Override
 	@Nullable
 	protected Integer findOrder(Object obj) {
+		//是否实现了Ordered接口是则返回order，否则判断是否使用了@Order注解
 		Integer order = super.findOrder(obj);
 		if (order != null) {
 			return order;

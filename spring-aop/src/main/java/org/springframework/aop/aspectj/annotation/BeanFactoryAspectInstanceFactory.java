@@ -133,6 +133,7 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	 */
 	@Override
 	public int getOrder() {
+		//排序
 		Class<?> type = this.beanFactory.getType(this.name);
 		if (type != null) {
 			if (Ordered.class.isAssignableFrom(type) && this.beanFactory.isSingleton(this.name)) {

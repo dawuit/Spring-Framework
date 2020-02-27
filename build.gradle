@@ -120,6 +120,10 @@ configure(allprojects) { project ->
 			dependency "org.hibernate:hibernate-validator:6.1.2.Final"
 			dependency "org.webjars:webjars-locator-core:0.43"
 			dependency "org.webjars:underscorejs:1.8.3"
+			dependency "com.google.guava:guava:18.0"
+			dependency "com.sun.istack:istack-commons-runtime:2.16"
+			dependency "com.sun.xml.fastinfoset:FastInfoset:1.2.12"
+
 
 			dependencySet(group: 'org.apache.tomcat', version: '9.0.31') {
 				entry 'tomcat-util'

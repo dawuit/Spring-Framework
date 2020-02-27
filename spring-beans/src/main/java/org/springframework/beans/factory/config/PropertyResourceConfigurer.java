@@ -77,11 +77,12 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		try {
+			// 合并本地属性和配置文件属性，默认本地属性不会被覆盖
 			Properties mergedProps = mergeProperties();
-
+			// 对value进行转换，默认实现返回自己
 			// Convert the merged properties, if necessary.
 			convertProperties(mergedProps);
-
+			// 对属性进行重新解析
 			// Let the subclass process the properties.
 			processProperties(beanFactory, mergedProps);
 		}
@@ -103,6 +104,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 		while (propertyNames.hasMoreElements()) {
 			String propertyName = (String) propertyNames.nextElement();
 			String propertyValue = props.getProperty(propertyName);
+			// 对value进行转换，默认实现返回自己
 			String convertedValue = convertProperty(propertyName, propertyValue);
 			if (!ObjectUtils.nullSafeEquals(propertyValue, convertedValue)) {
 				props.setProperty(propertyName, convertedValue);
@@ -120,6 +122,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	 * @see #convertPropertyValue(String)
 	 */
 	protected String convertProperty(String propertyName, String propertyValue) {
+		//转换value，默认返回自己，可以使用子类实现自己的逻辑
 		return convertPropertyValue(propertyValue);
 	}
 

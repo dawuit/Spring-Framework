@@ -72,6 +72,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 	private static final Comparator<Method> METHOD_COMPARATOR;
 
 	static {
+		//method的排序顺序Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class
 		Comparator<Method> adviceKindComparator = new ConvertingComparator<>(
 				new InstanceComparator<>(
 						Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class),
@@ -136,6 +137,8 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		}
 
 		// Find introduction fields.
+		//为代理增加接口，使用到@ParentDeclared注解
+		//https://blog.csdn.net/u010502101/article/details/76944753
 		for (Field field : aspectClass.getDeclaredFields()) {
 			Advisor advisor = getDeclareParentsAdvisor(field);
 			if (advisor != null) {
@@ -154,6 +157,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 				methods.add(method);
 			}
 		}, ReflectionUtils.USER_DECLARED_METHODS);
+		// 对方法进行排序 Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class
 		methods.sort(METHOD_COMPARATOR);
 		return methods;
 	}

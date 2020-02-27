@@ -76,13 +76,14 @@ public class OrderComparator implements Comparator<Object> {
 	private int doCompare(@Nullable Object o1, @Nullable Object o2, @Nullable OrderSourceProvider sourceProvider) {
 		boolean p1 = (o1 instanceof PriorityOrdered);
 		boolean p2 = (o2 instanceof PriorityOrdered);
+		//实现PriorityOrdered的子类优先
 		if (p1 && !p2) {
 			return -1;
 		}
 		else if (p2 && !p1) {
 			return 1;
 		}
-
+		//获取order
 		int i1 = getOrder(o1, sourceProvider);
 		int i2 = getOrder(o2, sourceProvider);
 		return Integer.compare(i1, i2);
