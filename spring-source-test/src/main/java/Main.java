@@ -1,8 +1,9 @@
 import config.SpringConfig;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import service.DogService;
 
 
@@ -16,10 +17,10 @@ import service.DogService;
 public class Main {
 
 	public static void beanFactory(){
-		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("application.xml"));
-		DogService dog = bf.getBean(DogService.class);
-		dog.say("hello");
-		return;
+//		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("application.xml"));
+//		DogService dog = bf.getBean(DogService.class);
+//		dog.say("hello");
+//		return;
 	}
 
 	public static void application(){
